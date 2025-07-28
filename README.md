@@ -1,16 +1,42 @@
-# cricket_accessories
+# 🏏 Cricket Accessories App
 
-A new Flutter project.
+A beautiful and user-friendly Flutter app to browse, search, and shop cricket gear. Perfect for cricket enthusiasts and developers learning to build e-commerce apps with Flutter.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+![Flutter](https://img.shields.io/badge/Flutter-Framework-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📱 Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Home Screen | Product Detail | Cart |
+|-------------|----------------|------|
+| ![Home](screenshots/home.png) | ![Detail](screenshots/detail.png) | ![Cart](screenshots/cart.png) |
+
+> 💡 Add your own screenshots inside a `/screenshots` folder.
+
+---
+
+## ✨ Features
+
+- 🛍️ Browse cricket accessories by category (bats, balls, gloves, kits, etc.)
+- 📦 View detailed product pages with multiple images and variants
+- 🔍 Powerful search across all products
+- 🛒 Add items to cart without leaving the product screen
+- 🧾 View local order history
+- 🔐 Login and signup screens (UI only — backend ready)
+- 🎯 Clean, responsive UI with Flutter Material Design
+
+---
+
+## 🚀 Getting Started
+
+To run this app locally:
+
+```bash
+git clone https://github.com/Ghulam-Mohiuddin007/Cricket_Accessories-App.git
+cd Cricket_Accessories-App
+flutter pub get
+flutter run
