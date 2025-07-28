@@ -1,0 +1,90 @@
+import 'package:cricket_accessories/Home.dart';
+import 'package:cricket_accessories/cart.dart';
+import 'package:cricket_accessories/history.dart';
+import 'package:cricket_accessories/profile.dart';
+import 'package:cricket_accessories/search.dart';
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+import 'package:flutter/material.dart';
+
+class Navbar extends StatefulWidget {
+  final String name;
+  final String email;
+  final int initialIndex;
+  final Map<String, String>? initialOrder;
+  final List<Map<String, dynamic>>? itemdetail;
+
+  const Navbar({
+    super.key,
+    required this.name,
+    required this.email,
+    this.initialIndex = 0,
+    this.initialOrder,
+    required this.itemdetail,
+  });
+
+  @override
+  State<Navbar> createState() => _NavbarState();
+}
+
+class _NavbarState extends State<Navbar> {
+  late int _selectedIndex;
+  List<Map<String, String>> orderHistory = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+
+    // Add new order if available
+    if (widget.initialOrder != null) {
+      orderHistory.add(widget.initialOrder!);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> tabItems = [
+      const HomeScreen(),
+      const Search(),
+      const Cart(),
+      OrderHistory(orderHistory: orderHistory, itemdetail: []),
+      ProfileScreen(name: widget.name, email: widget.email),
+    ];
+
+    return Scaffold(
+      body: tabItems[_selectedIndex],
+      bottomNavigationBar: FlashyTabBar(
+        backgroundColor: Colors.black,
+        animationCurve: Curves.bounceIn,
+        selectedIndex: _selectedIndex,
+        iconSize: 30,
+        showElevation: true,
+        onItemSelected: (index) => setState(() {
+          _selectedIndex = index;
+        }),
+        items: [
+          FlashyTabBarItem(
+            icon: Icon(Icons.home, color: Colors.yellow),
+            title: Text('Home', style: TextStyle(color: Colors.yellow)),
+          ),
+          FlashyTabBarItem(
+            icon: Icon(Icons.search, color: Colors.yellow),
+            title: Text('Search', style: TextStyle(color: Colors.yellow)),
+          ),
+          FlashyTabBarItem(
+            icon: Icon(Icons.shopping_cart_outlined, color: Colors.yellow),
+            title: Text('Cart', style: TextStyle(color: Colors.yellow)),
+          ),
+          FlashyTabBarItem(
+            icon: Icon(Icons.history, color: Colors.yellow),
+            title: Text('History', style: TextStyle(color: Colors.yellow)),
+          ),
+          FlashyTabBarItem(
+            icon: Icon(Icons.person, color: Colors.yellow),
+            title: Text('Profile', style: TextStyle(color: Colors.yellow)),
+          ),
+        ],
+      ),
+    );
+  }
+}
