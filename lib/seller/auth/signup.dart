@@ -1,14 +1,15 @@
-import 'package:cricket_accessories/navbar.dart';
+import 'package:cricket_accessories/seller/auth/seller_home.dart';
 import 'package:flutter/material.dart';
+import 'package:cricket_accessories/customer/view/home/home.dart';
 
-class Singup extends StatefulWidget {
-  const Singup({super.key});
+class Singup_seller extends StatefulWidget {
+  const Singup_seller({super.key});
 
   @override
-  State<Singup> createState() => _SingupState();
+  State<Singup_seller> createState() => _SingupState();
 }
 
-class _SingupState extends State<Singup> {
+class _SingupState extends State<Singup_seller> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController name = TextEditingController();
@@ -25,12 +26,6 @@ class _SingupState extends State<Singup> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Image.asset(
-            'assests/images/bg.jpg',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
           Column(
             children: [
               Expanded(flex: 1, child: SizedBox(height: 10)),
@@ -38,7 +33,7 @@ class _SingupState extends State<Singup> {
                 flex: 4,
                 child: Container(
                   decoration: const BoxDecoration(
-                    color: Colors.black,
+                    color: Color(0xFF2E7D32), // primary green
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
@@ -53,7 +48,7 @@ class _SingupState extends State<Singup> {
                           const Text(
                             'Signup',
                             style: TextStyle(
-                              color: Colors.amber,
+                              color: Colors.white,
                               fontSize: 45,
                               fontWeight: FontWeight.normal,
                             ),
@@ -144,17 +139,18 @@ class _SingupState extends State<Singup> {
                               width: double.infinity,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.amber,
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: ((context) => Navbar(
-                                          name: name.text,
-                                          email: email.text,
-                                          itemdetail: [],
+                                        builder: ((context) => SellerHomeScreen(
+                                          sellerName: '${name.text}',
                                         )),
                                       ),
                                     );
@@ -163,7 +159,7 @@ class _SingupState extends State<Singup> {
                                 child: const Text(
                                   "Signup",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.green,
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -196,17 +192,22 @@ class _SingupState extends State<Singup> {
     );
   }
 
+  /// Input field decoration with white border
   InputDecoration _inputDecoration(String label) {
     return InputDecoration(
       label: Text(label, style: const TextStyle(color: Colors.white)),
       hintText: 'Enter $label',
-      hintStyle: const TextStyle(color: Colors.amber),
+      hintStyle: const TextStyle(color: Colors.white70),
       border: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.amber),
+        borderSide: const BorderSide(color: Colors.white),
         borderRadius: BorderRadius.circular(30),
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.amber),
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(30),
       ),
     );

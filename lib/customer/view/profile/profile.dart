@@ -1,4 +1,3 @@
-import 'package:cricket_accessories/login.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -10,12 +9,18 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.green,
+
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text(
           'My Profile',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
       ),
@@ -29,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
             // Profile Icon
             const CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.green,
               child: Icon(Icons.person, size: 60, color: Colors.black),
             ),
 
@@ -39,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
             Text(
               name,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.greenAccent,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -52,33 +57,7 @@ class ProfileScreen extends StatelessWidget {
             infoTile('Phone', '03XX-XXXXXXX'), // Placeholder
             infoTile('Address', 'Your Address Here'),
 
-            const Spacer(),
-
             // Logout Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                ),
-                onPressed: () {
-                  // 🔓 Logout logic: Navigate to Signup/Login and clear stack
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (_) => Login()),
-                    (route) => false, // Remove all previous routes
-                  );
-                },
-                child: const Text(
-                  'Logout',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -90,12 +69,12 @@ class ProfileScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          const Icon(Icons.info, color: Colors.amber),
+          const Icon(Icons.info, color: Colors.green),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
               '$title: $value',
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: const TextStyle(color: Colors.greenAccent, fontSize: 16),
             ),
           ),
         ],

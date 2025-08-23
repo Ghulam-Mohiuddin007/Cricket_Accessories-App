@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "cricket_accessories",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/customer/view/main/main.dart"
+    },
+    {
+      "name": "cricket_accessories (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "program": "lib/customer/view/main/main.dart"
+    },
+    {
+      "name": "cricket_accessories (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/customer/view/main/main.dart"
+    }
+  ]
+}

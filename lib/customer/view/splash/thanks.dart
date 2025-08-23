@@ -1,4 +1,4 @@
-import 'package:cricket_accessories/navbar.dart';
+import 'package:cricket_accessories/customer/view/home/home.dart';
 import 'package:flutter/material.dart';
 
 class ThankYouScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class ThankYouScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -36,7 +36,7 @@ class ThankYouScreen extends StatelessWidget {
                 "Thank You!",
                 style: TextStyle(
                   fontSize: 32,
-                  color: Colors.yellow,
+                  color: Colors.green,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -44,7 +44,7 @@ class ThankYouScreen extends StatelessWidget {
               const SizedBox(height: 16),
               const Text(
                 "Your order has been placed successfully.",
-                style: TextStyle(fontSize: 16, color: Colors.white70),
+                style: TextStyle(fontSize: 16, color: Colors.black),
                 textAlign: TextAlign.center,
               ),
 
@@ -55,10 +55,10 @@ class ThankYouScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => Navbar(
+                      builder: (context) => HomeScreen(
                         name: userData['name'] ?? '',
                         email: userData['email'] ?? '',
-                        initialIndex: 0, // Go to home
+
                         initialOrder: userData,
                         itemdetail: item, // Add order to history
                       ),
@@ -66,16 +66,16 @@ class ThankYouScreen extends StatelessWidget {
                     (route) => false,
                   );
                 },
-                icon: const Icon(Icons.home, color: Colors.black),
+                icon: const Icon(Icons.home, color: Colors.white),
                 label: const Text(
                   "Back to Home",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow,
+                  backgroundColor: Colors.green,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 30,
                     vertical: 14,

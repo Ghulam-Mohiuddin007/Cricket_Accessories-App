@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'buy.dart';
+import '../product/buy.dart';
 
 // Global cart list
 List<Map<String, dynamic>> cartItems = [];
@@ -41,12 +41,12 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Cart", style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.green,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Column(
         children: [
@@ -55,7 +55,7 @@ class _CartState extends State<Cart> {
                 ? const Center(
                     child: Text(
                       "Cart is empty",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.greenAccent),
                     ),
                   )
                 : ListView.builder(
@@ -113,7 +113,7 @@ class _CartState extends State<Cart> {
           /// Bottom Section
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black,
+            color: Colors.green,
             child: Column(
               children: [
                 Row(
@@ -125,7 +125,7 @@ class _CartState extends State<Cart> {
                     ),
                     Text(
                       "Total: \$${getTotalPrice().toStringAsFixed(2)}",
-                      style: TextStyle(fontSize: 16, color: Colors.yellow),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
                 ),
@@ -135,13 +135,13 @@ class _CartState extends State<Cart> {
                   child: ElevatedButton(
                     onPressed: checkout,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                     child: Text(
                       "Proceed to Checkout",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

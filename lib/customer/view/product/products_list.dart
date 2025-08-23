@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cricket_accessories/detail.dart';
-import 'data_list.dart'; // Contains all lists like bats, balls, etc.
+import 'package:cricket_accessories/customer/view/product/detail.dart';
+import '../cart/data_list.dart'; // Contains all lists like bats, balls, etc.
 
 class ProductsList extends StatefulWidget {
   final String category;
@@ -48,20 +48,20 @@ class _ProductsListState extends State<ProductsList> {
     final selectedProducts = getSelectedProducts(widget.category);
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           widget.category,
           style: const TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: Colors.yellow),
+        backgroundColor: Colors.green,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: selectedProducts.isEmpty
           ? const Center(
               child: Text(
                 "No products found",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.greenAccent),
               ),
             )
           : ListView.builder(
@@ -80,7 +80,7 @@ class _ProductsListState extends State<ProductsList> {
                     );
                   },
                   child: Card(
-                    color: Colors.grey[900],
+                    color: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -115,7 +115,7 @@ class _ProductsListState extends State<ProductsList> {
                                 Text(
                                   "Rs ${product['price']}",
                                   style: const TextStyle(
-                                    color: Colors.yellow,
+                                    color: Colors.white,
                                     fontSize: 14,
                                   ),
                                 ),
@@ -127,7 +127,7 @@ class _ProductsListState extends State<ProductsList> {
                                       i < rating
                                           ? Icons.star
                                           : Icons.star_border,
-                                      color: Colors.amber,
+                                      color: Colors.white70,
                                       size: 16,
                                     );
                                   }),

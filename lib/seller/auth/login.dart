@@ -1,15 +1,15 @@
-import 'package:cricket_accessories/navbar.dart';
-import 'package:cricket_accessories/singup.dart';
+import 'package:cricket_accessories/seller/auth/seller_home.dart';
+import 'package:cricket_accessories/seller/auth/signup.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Login_seller extends StatefulWidget {
+  const Login_seller({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Login_seller> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login_seller> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -24,12 +24,6 @@ class _LoginState extends State<Login> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Image.asset(
-            'assests/images/bg.jpg',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
           Column(
             children: [
               Expanded(flex: 1, child: SizedBox(height: height * 0.5)),
@@ -37,7 +31,7 @@ class _LoginState extends State<Login> {
                 flex: 4,
                 child: Container(
                   decoration: const BoxDecoration(
-                    color: Colors.black,
+                    color: Color(0xFF2E7D32),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
@@ -53,7 +47,7 @@ class _LoginState extends State<Login> {
                           Text(
                             'Welcome Back',
                             style: TextStyle(
-                              color: Colors.amber,
+                              color: Colors.white,
                               fontSize: 45,
                               fontWeight: FontWeight.normal,
                             ),
@@ -76,13 +70,13 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 hintText: 'Enter Email',
-                                hintStyle: TextStyle(color: Colors.amber),
+                                hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderSide: BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderSide: BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                               ),
@@ -108,13 +102,13 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 hintText: 'Enter Password',
-                                hintStyle: TextStyle(color: Colors.amber),
+                                hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderSide: BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderSide: BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                               ),
@@ -143,7 +137,7 @@ class _LoginState extends State<Login> {
                               width: double.infinity,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.amber,
+                                  backgroundColor: Colors.white,
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
@@ -153,14 +147,13 @@ class _LoginState extends State<Login> {
 
                                     if (enteredEmail == "admin@gmail.com" &&
                                         enteredPassword == "1234") {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Navbar(
-                                            name: "Admin",
-                                            email: enteredEmail,
-                                            itemdetail: [],
-                                          ),
+                                          builder: (context) =>
+                                              SellerHomeScreen(
+                                                sellerName: 'Admin',
+                                              ),
                                         ),
                                       );
                                     } else {
@@ -180,7 +173,7 @@ class _LoginState extends State<Login> {
                                 child: Text(
                                   "Login",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.green,
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -194,14 +187,14 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: ((context) => Singup()),
+                                  builder: ((context) => Singup_seller()),
                                 ),
                               );
                             },
                             child: Text(
                               "Don't have an account? Signup",
                               style: TextStyle(
-                                color: Colors.yellow,
+                                color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                               ),

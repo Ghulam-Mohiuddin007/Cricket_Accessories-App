@@ -1,6 +1,6 @@
-import 'package:cricket_accessories/products_list.dart';
+import 'package:cricket_accessories/customer/view/product/products_list.dart';
 import 'package:flutter/material.dart';
-import 'data_list.dart'; // Make sure this has List<String> name & img1
+import '../cart/data_list.dart'; // Make sure this has List<String> name & img1
 
 class Cat extends StatefulWidget {
   const Cat({super.key});
@@ -15,12 +15,12 @@ class _CatState extends State<Cat> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Category", style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: Colors.yellow),
+        backgroundColor: Colors.green,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -46,11 +46,11 @@ class _CatState extends State<Cat> {
 
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                  color: Colors.green[900],
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.amber.withOpacity(0.4),
+                      color: Colors.green.withOpacity(0.4),
                       spreadRadius: 2,
                       blurRadius: 10,
                       offset: Offset(0, 4),

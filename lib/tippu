@@ -1,7 +1,7 @@
-import 'package:cricket_accessories/Home.dart';
-import 'package:cricket_accessories/cart.dart';
+
+import 'package:cricket_accessories/view/cart/cart.dart';
 import 'package:cricket_accessories/history.dart';
-import 'package:cricket_accessories/profile.dart';
+import 'package:cricket_accessories/view/profile/profile.dart';
 import 'package:cricket_accessories/search.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> tabItems = [
-      const HomeScreen(),
+       HomeScreen(),
       const Search(),
       const Cart(),
       OrderHistory(orderHistory: orderHistory, itemdetail: []),

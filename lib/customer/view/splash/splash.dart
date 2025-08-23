@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:cricket_accessories/customer/view/splash/welcome.dart';
 import 'package:flutter/material.dart';
-import 'package:cricket_accessories/login.dart';
+import 'package:cricket_accessories/customer/view/auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Login()),
+        MaterialPageRoute(builder: (context) => LoginChoiceScreen()),
       );
     }
   }
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text(
               'Cricket Accessories',
               style: TextStyle(
-                color: Colors.yellow,
+                color: Colors.green,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
             // Loading indicator
             const CircularProgressIndicator(
-              color: Colors.yellow,
+              color: Colors.green,
               strokeWidth: 3,
             ),
           ],

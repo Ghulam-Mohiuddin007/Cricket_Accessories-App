@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cricket_accessories/cart.dart';
-import 'package:cricket_accessories/buy.dart';
+import 'package:cricket_accessories/customer/view/cart/cart.dart';
+import 'package:cricket_accessories/customer/view/product/buy.dart';
 
 class Detail extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -21,11 +21,11 @@ class _DetailState extends State<Detail> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(product['name'] ?? 'Product'),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.yellow,
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,7 +34,7 @@ class _DetailState extends State<Detail> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Product Image Carousel
-              Container(
+              SizedBox(
                 height: height * 0.3,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -63,7 +63,7 @@ class _DetailState extends State<Detail> {
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.greenAccent,
                 ),
               ),
 
@@ -72,7 +72,7 @@ class _DetailState extends State<Detail> {
               /// Description
               Text(
                 product['description'] ?? 'No description provided.',
-                style: const TextStyle(fontSize: 16, color: Colors.yellow),
+                style: const TextStyle(fontSize: 16, color: Colors.green),
               ),
 
               SizedBox(height: height * 0.03),
@@ -80,7 +80,7 @@ class _DetailState extends State<Detail> {
               /// Price
               Text(
                 "Price: \$${product['price']}",
-                style: const TextStyle(fontSize: 16, color: Colors.white),
+                style: const TextStyle(fontSize: 16, color: Colors.greenAccent),
               ),
 
               SizedBox(height: height * 0.03),
@@ -92,16 +92,26 @@ class _DetailState extends State<Detail> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.yellow,
+                    color: Colors.lightGreen,
                   ),
                 ),
                 SizedBox(height: height * 0.01),
                 Wrap(
                   spacing: 8.0,
                   children: variants.map((variant) {
+                    final isSelected = selectedVariant == variant;
                     return ChoiceChip(
-                      label: Text(variant),
-                      selected: selectedVariant == variant,
+                      label: Text(
+                        variant,
+                        style: TextStyle(
+                          color: isSelected ? Colors.white : Colors.green,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      selected: isSelected,
+                      selectedColor: Colors.green,
+                      backgroundColor: Colors.white,
+                      side: BorderSide(color: Colors.green.shade300),
                       onSelected: (_) {
                         setState(() {
                           selectedVariant = variant;
@@ -119,6 +129,13 @@ class _DetailState extends State<Detail> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       onPressed: () {
                         if (variants != null && selectedVariant == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -140,12 +157,22 @@ class _DetailState extends State<Detail> {
                           const SnackBar(content: Text("Added to Cart")),
                         );
                       },
-                      child: const Text("Add to Cart"),
+                      child: const Text(
+                        "Add to Cart",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: OutlinedButton(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       onPressed: () {
                         if (variants != null && selectedVariant == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -169,7 +196,10 @@ class _DetailState extends State<Detail> {
                           ),
                         );
                       },
-                      child: const Text("Buy Now"),
+                      child: const Text(
+                        "Buy Now",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],

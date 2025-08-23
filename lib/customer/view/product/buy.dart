@@ -1,4 +1,4 @@
-import 'package:cricket_accessories/thanks.dart';
+import 'package:cricket_accessories/customer/view/splash/thanks.dart';
 import 'package:flutter/material.dart';
 
 class BuyScreen extends StatefulWidget {
@@ -56,18 +56,20 @@ class _BuyScreenState extends State<BuyScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Buy Now", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
+
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             /// User Info Form Card
             Card(
-              color: Colors.grey[850],
+              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -82,7 +84,7 @@ class _BuyScreenState extends State<BuyScreen> {
                         "Shipping Information",
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.amber,
+                          color: Colors.greenAccent,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -105,7 +107,7 @@ class _BuyScreenState extends State<BuyScreen> {
 
             /// Cart Summary Card
             Card(
-              color: Colors.grey[850],
+              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -119,7 +121,7 @@ class _BuyScreenState extends State<BuyScreen> {
                       "Items in Cart",
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.amber,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -137,12 +139,12 @@ class _BuyScreenState extends State<BuyScreen> {
                             children: [
                               Text(
                                 item['name'],
-                                style: const TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.green),
                               ),
                               Text(
                                 "\$${item['price']}",
                                 style: const TextStyle(
-                                  color: Colors.greenAccent,
+                                  color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -159,7 +161,7 @@ class _BuyScreenState extends State<BuyScreen> {
                           "Total:",
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.white,
+                            color: Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -167,7 +169,7 @@ class _BuyScreenState extends State<BuyScreen> {
                           "\$${total.toStringAsFixed(2)}",
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.yellow,
+                            color: Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -182,17 +184,17 @@ class _BuyScreenState extends State<BuyScreen> {
 
             ElevatedButton.icon(
               onPressed: confirmOrder,
-              icon: const Icon(Icons.check_circle, color: Colors.black),
+              icon: const Icon(Icons.check_circle, color: Colors.white),
               label: const Text(
                 "Confirm Purchase",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.yellow,
+                backgroundColor: Colors.green,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 40,
                   vertical: 14,
@@ -213,24 +215,24 @@ class _BuyScreenState extends State<BuyScreen> {
       padding: const EdgeInsets.only(bottom: 12),
       child: TextFormField(
         controller: controller,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.black),
         validator: (value) =>
             value == null || value.isEmpty ? 'Required' : null,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: const TextStyle(color: Colors.amber),
+          labelStyle: const TextStyle(color: Colors.green),
           filled: true,
-          fillColor: Colors.grey[800],
+          fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.grey),
+            borderSide: const BorderSide(color: Colors.green),
             borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.yellow),
+            borderSide: const BorderSide(color: Colors.green),
             borderRadius: BorderRadius.circular(10),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.redAccent),
+            borderSide: const BorderSide(color: Colors.green),
             borderRadius: BorderRadius.circular(10),
           ),
         ),

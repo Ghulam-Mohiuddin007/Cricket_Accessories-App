@@ -21,19 +21,21 @@ class _OrderHistoryState extends State<OrderHistory> {
       appBar: AppBar(
         title: const Text(
           "Order History",
-          style: TextStyle(color: Colors.yellow),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
         centerTitle: true,
+
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: widget.orderHistory.isEmpty
             ? const Center(
                 child: Text(
                   "No orders yet!",
-                  style: TextStyle(color: Colors.yellow, fontSize: 18),
+                  style: TextStyle(color: Colors.greenAccent, fontSize: 18),
                 ),
               )
             : ListView.builder(
@@ -46,7 +48,7 @@ class _OrderHistoryState extends State<OrderHistory> {
 
                   return Card(
                     margin: const EdgeInsets.only(bottom: 16),
-                    color: Colors.grey[850],
+                    color: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -83,7 +85,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                     Text(
                                       item['name'] ?? 'Product Name',
                                       style: const TextStyle(
-                                        color: Colors.amber,
+                                        color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -92,14 +94,14 @@ class _OrderHistoryState extends State<OrderHistory> {
                                     Text(
                                       item['title'] ?? '',
                                       style: const TextStyle(
-                                        color: Colors.white70,
+                                        color: Colors.white60,
                                       ),
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
                                       'Price: ${item['price'] ?? ''}',
                                       style: const TextStyle(
-                                        color: Colors.greenAccent,
+                                        color: Colors.white70,
                                       ),
                                     ),
                                   ],
@@ -115,7 +117,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                             "Order Info",
                             style: TextStyle(
                               fontSize: 15,
-                              color: Colors.yellow,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

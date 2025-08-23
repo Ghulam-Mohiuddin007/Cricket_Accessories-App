@@ -1,6 +1,6 @@
-import 'package:cricket_accessories/detail.dart';
+import 'package:cricket_accessories/customer/view/cart/data_list.dart';
+import 'package:cricket_accessories/customer/view/product/detail.dart';
 import 'package:flutter/material.dart';
-import 'data_list.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -34,16 +34,16 @@ class _SearchState extends State<Search> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "Search Accessories",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
         iconTheme: IconThemeData(
-          color: Colors.yellow, // change to your desired color
+          color: Colors.white, // change to your desired color
         ),
       ),
       body: Padding(
@@ -51,13 +51,13 @@ class _SearchState extends State<Search> {
         child: Column(
           children: [
             TextField(
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               controller: searchController,
               onChanged: updateSuggestions,
               decoration: InputDecoration(
                 hintText: "Search accessories...",
-                hintStyle: const TextStyle(color: Colors.white70),
-                prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                hintStyle: const TextStyle(color: Colors.greenAccent),
+                prefixIcon: const Icon(Icons.search, color: Colors.greenAccent),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -69,7 +69,7 @@ class _SearchState extends State<Search> {
                   ? const Center(
                       child: Text(
                         "No products found",
-                        style: TextStyle(color: Colors.yellow),
+                        style: TextStyle(color: Colors.greenAccent),
                       ),
                     )
                   : ListView.builder(
@@ -87,11 +87,11 @@ class _SearchState extends State<Search> {
                           },
                           title: Text(
                             product['name'],
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           ),
                           subtitle: Text(
                             product['category'],
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           ),
                         );
                       },
