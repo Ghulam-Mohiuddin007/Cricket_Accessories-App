@@ -153,6 +153,10 @@ class _LoginState extends State<Login_seller> {
                                           builder: (context) =>
                                               SellerHomeScreen(
                                                 sellerName: 'Admin',
+                                                shopName: 'Admin Shop',
+                                                address: 'Admin Address',
+                                                phone: '1234567890',
+                                                email: 'admin@gamil.com',
                                               ),
                                         ),
                                       );

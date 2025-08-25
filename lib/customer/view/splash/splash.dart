@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:cricket_accessories/customer/view/splash/welcome.dart';
 import 'package:flutter/material.dart';
-import 'package:cricket_accessories/customer/view/auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

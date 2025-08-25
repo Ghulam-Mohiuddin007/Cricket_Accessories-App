@@ -1,6 +1,6 @@
 import 'package:cricket_accessories/customer/view/auth/login.dart';
 import 'package:cricket_accessories/seller/auth/login.dart';
-import 'package:cricket_accessories/seller/auth/signup.dart';
+
 import 'package:flutter/material.dart';
 
 class LoginChoiceScreen extends StatelessWidget {

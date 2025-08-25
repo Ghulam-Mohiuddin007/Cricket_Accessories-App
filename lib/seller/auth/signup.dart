@@ -1,6 +1,6 @@
 import 'package:cricket_accessories/seller/auth/seller_home.dart';
+import 'package:cricket_accessories/seller/auth/shop_form.dart';
 import 'package:flutter/material.dart';
-import 'package:cricket_accessories/customer/view/home/home.dart';
 
 class Singup_seller extends StatefulWidget {
   const Singup_seller({super.key});
@@ -149,7 +149,7 @@ class _SingupState extends State<Singup_seller> {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: ((context) => SellerHomeScreen(
+                                        builder: ((context) => ShopFormScreen(
                                           sellerName: '${name.text}',
                                         )),
                                       ),

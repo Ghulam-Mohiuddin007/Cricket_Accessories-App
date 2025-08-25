@@ -52,18 +52,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Container(
+          child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   "Select Image Source",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -132,13 +128,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
         description: _descController.text.trim(),
         category: _selectedCategory!,
         imagePath: _imageFile?.path,
-        // ✅ Always a non-null String
       );
 
       Provider.of<ProductProvider>(context, listen: false).addProduct(product);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Product Added Successfully ✅")),
+        const SnackBar(content: Text("✅ Product Added Successfully")),
       );
 
       Navigator.pop(context);
@@ -147,23 +142,40 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: const Text("Add New Product"),
-        backgroundColor: Colors.green.shade700,
+        title: const Text("Add Product"),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.green, Colors.lightGreen],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.05,
+          vertical: size.height * 0.02,
+        ),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              // 📷 Product Image
               GestureDetector(
                 onTap: _showImagePickerDialog,
-                child: Container(
-                  height: 180,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                  height: size.height * 0.25,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -172,7 +184,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
-                        blurRadius: 6,
+                        blurRadius: 8,
                         offset: Offset(2, 4),
                       ),
                     ],
@@ -189,7 +201,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Upload Product Image (Optional)",
+                                "Tap to Upload Image",
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16,
@@ -209,43 +221,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+
               _buildTextField(
                 controller: _nameController,
                 label: "Product Name",
                 icon: Icons.inventory_2,
-                validator: (v) =>
-                    v!.isEmpty ? "Please enter product name" : null,
+                validator: (v) => v!.isEmpty ? "Enter product name" : null,
               ),
               const SizedBox(height: 15),
+
               _buildTextField(
                 controller: _priceController,
                 label: "Price",
                 icon: Icons.attach_money,
                 keyboardType: TextInputType.number,
-                validator: (v) => v!.isEmpty ? "Please enter price" : null,
+                validator: (v) => v!.isEmpty ? "Enter price" : null,
               ),
               const SizedBox(height: 15),
+
               _buildTextField(
                 controller: _stockController,
-                label: "Stock Quantity",
+                label: "Stock",
                 icon: Icons.storage,
                 keyboardType: TextInputType.number,
-                validator: (v) => v!.isEmpty ? "Please enter stock" : null,
+                validator: (v) => v!.isEmpty ? "Enter stock" : null,
               ),
               const SizedBox(height: 15),
+
+              // 📂 Category Dropdown
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 5,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(color: Colors.green.shade300),
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      blurRadius: 6,
+                      blurRadius: 8,
                       offset: Offset(2, 4),
                     ),
                   ],
@@ -258,38 +270,54 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         (cat) => DropdownMenuItem(value: cat, child: Text(cat)),
                       )
                       .toList(),
-                  decoration: const InputDecoration(border: InputBorder.none),
                   onChanged: (value) =>
                       setState(() => _selectedCategory = value),
-                  validator: (value) =>
-                      value == null ? "Please select a category" : null,
+                  validator: (v) => v == null ? "Select a category" : null,
+                  decoration: const InputDecoration(border: InputBorder.none),
                 ),
               ),
               const SizedBox(height: 15),
+
               _buildTextField(
                 controller: _descController,
                 label: "Description",
                 icon: Icons.description,
                 maxLines: 3,
-                validator: (v) =>
-                    v!.isEmpty ? "Please enter description" : null,
+                validator: (v) => v!.isEmpty ? "Enter description" : null,
               ),
               const SizedBox(height: 25),
+
+              // ✅ Save Button
               SizedBox(
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade600,
+                    padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    elevation: 5,
                   ),
                   onPressed: _saveProduct,
-                  child: const Text(
-                    "Add Product",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Colors.green, Colors.lightGreen],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: const Text(
+                        "Add Product",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -309,13 +337,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
     int maxLines = 1,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.green.shade300),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(2, 4)),
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(2, 4)),
         ],
       ),
       child: TextFormField(
@@ -326,6 +352,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
           prefixIcon: Icon(icon, color: Colors.green.shade700),
           labelText: label,
           border: InputBorder.none,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15,
+          ),
         ),
         validator: validator,
       ),
