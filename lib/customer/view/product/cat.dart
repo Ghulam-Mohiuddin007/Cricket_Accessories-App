@@ -17,9 +17,17 @@ class _CatState extends State<Cat> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Category", style: TextStyle(color: Colors.white)),
+        title: const Text(
+          "Categories",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green[800],
+        elevation: 6,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
@@ -30,12 +38,11 @@ class _CatState extends State<Cat> {
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 0.85,
+            childAspectRatio: 0.8,
           ),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                print("Sending category: ${name[index]}");
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -43,34 +50,65 @@ class _CatState extends State<Cat> {
                   ),
                 );
               },
-
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
                 decoration: BoxDecoration(
-                  color: Colors.green[900],
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(18),
+                  gradient: LinearGradient(
+                    colors: [Colors.green.shade800, Colors.green.shade400],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.green.withOpacity(0.4),
+                      color: Colors.green.withOpacity(0.3),
+                      blurRadius: 8,
                       spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, 4),
+                      offset: const Offset(2, 4),
                     ),
                   ],
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(16),
-                      ),
-                      child: Image.asset(
-                        img1[index],
-                        height: size.height * 0.2,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                    // Image with overlay
+                    Expanded(
+                      flex: 3,
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(18),
+                            ),
+                            child: Image.asset(
+                              img1[index],
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(18),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.black.withOpacity(0.5),
+                                  Colors.transparent,
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+
+                    // Title
                     Expanded(
+                      flex: 1,
                       child: Center(
                         child: Text(
                           name[index],
@@ -78,8 +116,8 @@ class _CatState extends State<Cat> {
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.8,
                           ),
                         ),
                       ),

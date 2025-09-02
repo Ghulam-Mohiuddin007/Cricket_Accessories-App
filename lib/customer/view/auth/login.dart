@@ -154,6 +154,7 @@ class _LoginState extends State<Login> {
                                             name: "Admin",
                                             email: enteredEmail,
                                             itemdetail: [],
+                                            initialOrder: {},
                                           ),
                                         ),
                                       );

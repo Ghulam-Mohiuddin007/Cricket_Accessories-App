@@ -188,7 +188,7 @@ class _LoginState extends State<Login_seller> {
                           SizedBox(height: height * 0.02),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: ((context) => Singup_seller()),

@@ -152,6 +152,7 @@ class _SingupState extends State<Singup> {
                                           name: name.text,
                                           email: email.text,
                                           itemdetail: [],
+                                          initialOrder: {},
                                         )),
                                       ),
                                     );
