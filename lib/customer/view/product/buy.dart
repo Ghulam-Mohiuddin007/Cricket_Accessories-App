@@ -57,25 +57,24 @@ class _BuyScreenState extends State<BuyScreen> {
       appBar: AppBar(
         title: const Text("Buy Now", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
-
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// User Info Form Card
+            /// Shipping Form
             Card(
               color: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
               ),
-              elevation: 4,
+              elevation: 5,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -83,20 +82,24 @@ class _BuyScreenState extends State<BuyScreen> {
                       const Text(
                         "Shipping Information",
                         style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.greenAccent,
+                          fontSize: 20,
+                          color: Colors.green,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 20),
 
-                      buildField("Email", emailController),
-                      buildField("Phone", phoneController),
-                      buildField("Address", addressController),
-                      buildField("Country", countryController),
-                      buildField("Province", provinceController),
-                      buildField("City", cityController),
-                      buildField("Postal Code", postalCodeController),
+                      buildField("Email", emailController, Icons.email),
+                      buildField("Phone", phoneController, Icons.phone),
+                      buildField("Address", addressController, Icons.home),
+                      buildField("Country", countryController, Icons.flag),
+                      buildField("Province", provinceController, Icons.map),
+                      buildField("City", cityController, Icons.location_city),
+                      buildField(
+                        "Postal Code",
+                        postalCodeController,
+                        Icons.mail,
+                      ),
                     ],
                   ),
                 ),
@@ -105,22 +108,22 @@ class _BuyScreenState extends State<BuyScreen> {
 
             const SizedBox(height: 20),
 
-            /// Cart Summary Card
+            /// Cart Summary
             Card(
               color: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
               ),
-              elevation: 4,
+              elevation: 5,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
                       "Items in Cart",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         color: Colors.green,
                         fontWeight: FontWeight.bold,
                       ),
@@ -133,13 +136,18 @@ class _BuyScreenState extends State<BuyScreen> {
                       itemBuilder: (_, index) {
                         final item = widget.cartItems[index];
                         return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                item['name'],
-                                style: const TextStyle(color: Colors.green),
+                              Expanded(
+                                child: Text(
+                                  item['name'],
+                                  style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
                               Text(
                                 "\$${item['price']}",
@@ -160,7 +168,7 @@ class _BuyScreenState extends State<BuyScreen> {
                         const Text(
                           "Total:",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
@@ -168,7 +176,7 @@ class _BuyScreenState extends State<BuyScreen> {
                         Text(
                           "\$${total.toStringAsFixed(2)}",
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
@@ -182,25 +190,27 @@ class _BuyScreenState extends State<BuyScreen> {
 
             const SizedBox(height: 30),
 
-            ElevatedButton.icon(
-              onPressed: confirmOrder,
-              icon: const Icon(Icons.check_circle, color: Colors.white),
-              label: const Text(
-                "Confirm Purchase",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+            /// Confirm Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: confirmOrder,
+                icon: const Icon(Icons.check_circle, color: Colors.white),
+                label: const Text(
+                  "Confirm Purchase",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 14,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
                 ),
               ),
             ),
@@ -210,30 +220,35 @@ class _BuyScreenState extends State<BuyScreen> {
     );
   }
 
-  Widget buildField(String label, TextEditingController controller) {
+  Widget buildField(
+    String label,
+    TextEditingController controller,
+    IconData icon,
+  ) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 14),
       child: TextFormField(
         controller: controller,
         style: const TextStyle(color: Colors.black),
         validator: (value) =>
             value == null || value.isEmpty ? 'Required' : null,
         decoration: InputDecoration(
+          prefixIcon: Icon(icon, color: Colors.green),
           labelText: label,
           labelStyle: const TextStyle(color: Colors.green),
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.green),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.green),
-            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.green, width: 2),
+            borderRadius: BorderRadius.circular(12),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.green),
-            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.redAccent),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),
